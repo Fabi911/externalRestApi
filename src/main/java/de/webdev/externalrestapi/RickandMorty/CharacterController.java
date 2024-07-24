@@ -3,7 +3,6 @@ package de.webdev.externalrestapi.RickandMorty;
 
 import de.webdev.externalrestapi.RickandMorty.api.RickAndMortyApiService;
 import de.webdev.externalrestapi.RickandMorty.api.RickandMortyAPICharacter;
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
