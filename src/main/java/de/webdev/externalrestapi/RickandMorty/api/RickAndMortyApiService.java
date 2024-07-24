@@ -1,6 +1,7 @@
 package de.webdev.externalrestapi.RickandMorty.api;
 
 import de.webdev.externalrestapi.RickandMorty.api.model.RickAndMortyApiResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
@@ -10,9 +11,10 @@ import java.util.List;
 public class RickAndMortyApiService {
     private final RestClient restClient;
 
-    public RickAndMortyApiService() {
+
+    public RickAndMortyApiService(@Value("${basic.url}") String basicUrl) {
         restClient = RestClient.builder()
-                .baseUrl("https://rickandmortyapi.com/api/")
+                .baseUrl(basicUrl)
                 .build();
     }
 
