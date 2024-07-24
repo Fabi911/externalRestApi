@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("api/")
 @RequiredArgsConstructor
 public class CharacterController {
     private final RickAndMortyApiService rickAndMortyApiService;
@@ -17,9 +17,9 @@ public class CharacterController {
     @GetMapping("characters")
     public List<RickandMortyAPICharacter> getCharacters(@RequestParam(required = false) String status) {
         if (status != null) {
-            return rickAndMortyApiService.loadCharactersByStatus(status);
+            return rickAndMortyApiService.loadCharactersByStatus(status).results();
         } else {
-            return rickAndMortyApiService.loadAllCharacters();
+            return rickAndMortyApiService.loadAllCharacters().results();
         }
     }
 

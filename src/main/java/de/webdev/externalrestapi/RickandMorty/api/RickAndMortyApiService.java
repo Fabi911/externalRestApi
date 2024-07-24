@@ -18,42 +18,43 @@ public class RickAndMortyApiService {
                 .build();
     }
 
-    public List<RickandMortyAPICharacter> loadAllCharacters() {
+    public RickAndMortyApiResponse loadAllCharacters() {
         RickAndMortyApiResponse response = restClient
                 .get()
-                .uri("character")
+                .uri("api/character")
                 .retrieve()
                 .body(RickAndMortyApiResponse.class);
-        return response.results();
+
+        return response;
     }
 
     public RickandMortyAPICharacter loadCharacterById(int id) {
         return restClient
                 .get()
-                .uri("character/{id}", id)
+                .uri("api/character/{id}", id)
                 .retrieve()
                 .body(RickandMortyAPICharacter.class);
     }
 
-    public List<RickandMortyAPICharacter> loadCharactersByStatus(String status) {
+    public RickAndMortyApiResponse loadCharactersByStatus(String status) {
         RickAndMortyApiResponse responseStatus;
         responseStatus = restClient
                 .get()
                 .uri(uriBuilder -> uriBuilder
-                    .path("character")
+                    .path("api/character")
                     .queryParam("status", status)
                     .build())
                 .retrieve()
                 .body(RickAndMortyApiResponse.class);
         assert responseStatus != null;
-        return responseStatus.results();
+        return responseStatus;
     }
 
     public int countAliveCharactersBySpecies(String species) {
         RickAndMortyApiResponse response = restClient
                 .get()
                 .uri(uriBuilder -> uriBuilder
-                        .path("character")
+                        .path("api/character")
                         .queryParam("species", species)
                         .build())
                 .retrieve()
